@@ -29,11 +29,9 @@ protocol = ProtocolLoader(loader_cfg).load_protocol(root)
 cell = protocol.get_cell("audiox-maf", "audiocaps", "fd_pann")
 ```
 
-## Protocols
+## Models
 
-| Model | AudioCaps | MusicCaps |
-|---|---|---|
-| audiox-maf | ✓ | ✓ |
-| tango-music-af-ft-mc | | ✓ |
+- audiox-maf
+- tango-music-af-ft-mc
 
 
