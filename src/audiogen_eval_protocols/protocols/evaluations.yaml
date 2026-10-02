@@ -1,0 +1,22 @@
+default_metric: fd_pann
+protocol_metric_list: [fd_pann, fad]
+eval_list:
+  - name: recon_ref
+    exp_name: recon_ref_fad
+    pair_list: [[gt, recon]]
+    source: recon
+    gt_downmix: ""
+    metric_list: [fd_pann, fad]
+    sampling_field_list: []
+    summary_field_list: [clips]
+  - name: gen_ref
+    exp_name: gen_ref_fad
+    pair_list: [[ref, gen]]
+    source: gen
+    gt_downmix: ""
+    metric_list: [fd_pann, fad]
+    sampling_field_list: []
+    summary_field_list: [clips]
+dataset_list:
+  - {name: audiocaps, subset: test}
+  - {name: musiccaps, subset: test}

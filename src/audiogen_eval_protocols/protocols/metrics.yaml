@@ -1,0 +1,32 @@
+pann:
+  sample_rate: 32000
+  window_samples: 320000
+  checkpoint_name: fad_panns_cnn14_pytorch.pth
+  window_size: 1024
+  hop_size: 320
+  mel_bins: 64
+  fmin: 50
+  fmax: 14000
+  classes: 527
+  isc_splits: 10
+  isc_seed: 2020
+  kl_eps: 1.0e-6
+fad:
+  sample_rate: 16000
+  checkpoint_name: fad_vggish_pytorch.pth
+  use_activation: false
+  remove_dc: true
+audiobox:
+  sample_rate: 16000
+  checkpoint_name: audiobox_aesthetics_checkpoint.pt
+  axis_list: [PC, PQ]
+pann_logit_list: [kl_softmax, is_mean]
+fd_eps: 1.0e-6
+# companions ride the fd_pann window
+spec_list:
+  - {name: fd_pann, backbone: pann, protocol_metric: fd_pann, per_source: false, weight_name_list: [fad_panns_cnn14_pytorch.pth]}
+  - {name: kl_softmax, backbone: pann, protocol_metric: fd_pann, per_source: false, weight_name_list: [fad_panns_cnn14_pytorch.pth]}
+  - {name: is_mean, backbone: pann, protocol_metric: fd_pann, per_source: true, weight_name_list: [fad_panns_cnn14_pytorch.pth]}
+  - {name: fad, backbone: fad, protocol_metric: fad, per_source: false, weight_name_list: [fad_vggish_pytorch.pth]}
+  - {name: pc_audiobox, backbone: audiobox, protocol_metric: fd_pann, per_source: true, weight_name_list: [audiobox_aesthetics_checkpoint.pt]}
+  - {name: pq_audiobox, backbone: audiobox, protocol_metric: fd_pann, per_source: true, weight_name_list: [audiobox_aesthetics_checkpoint.pt]}

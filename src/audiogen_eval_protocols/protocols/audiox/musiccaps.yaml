@@ -1,0 +1,20 @@
+fad:
+  arm:
+    steps: 250
+    cfg_scale: 7.0
+    seconds_start: 0.0
+    seconds_total: 10.0
+    level_policy: peak
+  downmix: first
+  band_rate: 0
+  paper_fd: fd_pann
+fd_pann:
+  arm:
+    steps: 250
+    cfg_scale: 7.0
+    seconds_start: 0.0
+    seconds_total: 10.0
+    level_policy: peak
+  downmix: mean
+  band_rate: 0
+  paper_fd: fd_pann
